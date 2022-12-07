@@ -140,6 +140,8 @@ html, body{
 
 }
 
+
+
 /* This is for text slightly smaller than the title - e.g. a subtitle */
 .Intention {
     width: 100%;
@@ -237,7 +239,12 @@ html, body{
     .column {
       flex: 100%;
       max-width: 100%;
-    }   
+    }
+
+    /* Makes sure there is no overflow with the large title */
+    .Title {
+      font-size: 300%;
+    }
   }
 
   /* Section that sticks to the left of the screen */
