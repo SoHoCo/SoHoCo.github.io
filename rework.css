@@ -101,6 +101,7 @@ html, body{
 
 /* This is the continue button that will be at the bottom of the parallax 2 div */
 .bottom {
+  margin-bottom: 0px;
   position: relative;
   bottom: 0px;
   width: 100%;
@@ -241,6 +242,7 @@ html, body{
 
   /* Section that sticks to the left of the screen */
 .left {
+  margin-top: 10%;
   align-items: center;
   background-color: #ffffff;
   opacity: 0.7;
@@ -321,6 +323,7 @@ html, body{
 
 /* Button style Modified from ('getcssscan', 2022, 'Beautiful CSS buttons examples', [CSS code], viewed Thur 1st December 2022, (https://getcssscan.com/css-buttons-examples)*/
 button {
+  margin-bottom: 5%;
   align-items: center;
   background-color: #ffffff;
   border: 2px solid #111;
