@@ -1,0 +1,492 @@
+/* eslint-disable no-redeclare */
+/* eslint-disable no-undef */
+/* eslint-disable no-var */
+/* eslint-disable no-unused-vars */
+// ------------------------------------INITIALISING-----------------------------------------------------
+class CommissionEmail {
+  /**
+   * Class that reads the email
+   * @param {string} name the name of the person sending the email
+   * @param {string} email the email of the person sending the email
+   * @param {string} subject the subject of the email being sent
+   * @param {string} message the message content of the email
+   * @param {string} preference which section of my portfolio they preferred.
+   */
+  constructor (name, email, subject, message, preference) {
+      this.name = document.getElementById('name').value;
+      this.email = document.getElementById('email').value;
+      this.subject = document.getElementById('subject').value;
+      this.message = document.getElementById('message').value;
+      this.preference = document.getElementById('multipleChoice').value;
+  };
+};
+
+/**
+* This is where the 3 button layout is in the HTML document.
+* @const {HTMLElement}
+*/
+const menu = document.getElementById('menu');
+/**
+* This is the section that contains the pie chart and information in the HTML document.
+* @const {HTMLElement}
+*/
+const intro = document.getElementById('Parallax3');
+/**
+* This is the footer that appears at the bottom of the page when you hover over certain
+* items of the HTML document and gives back data.
+* @const {HTMLElement}
+*/
+const footer = document.getElementById('footer');
+/**
+* Defines a button number that will be later used in functions
+* @type {number}
+*/
+var buttonNumber = 0;
+/**
+ * This is where the data from my JSON file will be passed to in most functions
+* @type {Object}
+*/
+var d;
+// Initialise these sections as hidden.
+menu.style.display = 'none';
+intro.style.display = 'none';
+footer.style.display = 'none';
+// ------------------------------------BAR CHART FUNCTION-----------------------------------------------
+/**
+* Creates a Barchart - Modified from: ('Shahpar Khan', 2022, 'How to create a bar chart using D3', [JavaScript Code], viewed Thur 19th November 2022, (https://www.educative.io/answers/how-to-create-a-bar-chart-using-d3))
+* @param {number} buttonNumber -Alerts which button has been pressed and acts accordingly
+* @yields {svg} -returns a Bar Chart using multiple SVGs
+* @yields {text} -there is text along the x and y axis
+*/
+function barChart (buttonNumber) {
+  /**
+   * @const {Object} svg this initialises where we want this svg to appear.
+   */
+  const svg = d3.select('#svgBar');
+  /**
+   * We set a margin so that the SVG appears in the center of the screen.
+   * @property {number} margin the margin of this svg
+   */
+  const margin = 150;
+  /**
+   * @property {number} width the width of the svg
+   */
+  const width = svg.attr('width') - margin;
+  /**
+   * @property {number} height the height of the svg object
+   */
+  const height = svg.attr('height') - margin;
+  // This resets the svg
+  svg.selectAll('*').remove();
+  /**
+   * This creates the scale of the x axis using the widths given
+   * @const {number}
+   */
+  const xScale = d3.scaleBand().range([0, width]).padding(0.4);
+  /**
+   * This creates the scale of the y axis using the widths given
+   * @type {number}
+   */
+  const yScale = d3.scaleLinear().range([height, 0]);
+  const g = svg.append('g')
+      .attr('transform', 'translate(' + 100 + ',' + 100 + ')');
+  d3.json('data.json',
+      /**
+       * Parses the data from the data.json file and continues building bar chart.
+       * @name ParseData
+       * @param {error} error checks if there is an error and if so, throws an error.
+       * @param {Object} d takes data from dataset
+       * @throws {error} if there is an error, throw an error
+       */
+      function (error, d) {
+          if (error) {
+              throw error;
+          }
+          /**
+           * Constructs the correct bar chart depending on which button you press.
+           * @name constructCorrectBarChart
+           * @returns {data} -returns list of objects from the data
+           */
+          if (buttonNumber === 2) {
+              // eslint-disable-next-line no-var
+              /**
+               * @property {Object} data As my data has many objects in object, this creates a path to
+               * the object we want to extract to take data from to construct the bar chart.
+               */
+              var data = d.Artworks.ReflectionArtworks;
+          } else if (buttonNumber === 3) {
+              var data = d.Artworks.LockdownArtworks;
+          } else {
+              var data = d.Artworks.ReflectingOnLockdownArt;
+          }
+          xScale.domain(data.map(
+              /**
+               * this takes the data and makes a domain from it for the x axis
+               * @param {Object} d data from json file
+               * @property {Array.<string>} d.imageName this is a list of all the names of the images.
+               */
+              function (d) {
+                  return d.imageName;
+              }));
+          yScale.domain([0, d3.max(data, function (d) {
+              return d.timeTaken;
+          })]);
+          // Puts "image name" on x axis
+          g.append('g')
+              .attr('transform', 'translate(0,' + height + ')')
+              .call(d3.axisBottom(xScale))
+              .append('text')
+              .attr('y', height - 100)
+              .attr('x', width - 100)
+              .attr('text-anchor', 'end')
+              .attr('stroke', 'black')
+              .text('Image Name');
+          /**
+           * Puts the title of the y-axis down
+           * @param {object} d - takes in the data
+           * @returns {Text}
+           */
+          g.append('g')
+              .call(d3.axisLeft(yScale).tickFormat(function (d) {
+                      return d;
+                  })
+                  .ticks(10))
+              .append('text')
+              .attr('transform', 'rotate(-90)')
+              .attr('y', 6)
+              .attr('dy', '-6.1em')
+              .attr('text-anchor', 'end')
+              .attr('stroke', 'black')
+              .text('Time taken (hours)');
+          g.selectAll('.bar')
+              .data(data)
+              .enter().append('rect')
+              .attr('class', 'bar')
+              .attr('x',
+                  /**
+                   * Puts name of images on bottom of x axis.
+                   * @param {data} d data from json file
+                   * @returns {Text} shows the name of the image on the bottom of the x axis.
+                   */
+                  function (d) {
+                      return xScale(d.imageName);
+                  })
+              .attr('y',
+                  /**
+                   * Puts names on the y-axis.
+                   * @param {data} d data from JSON file
+                   * @returns {Text} shows how long it toook on the x axis
+                   */
+                  function (d) {
+                      return yScale(d.timeTaken);
+                  })
+              .attr('width', xScale.bandwidth())
+              .attr('height',
+                  /**
+                   * Creates the height for the bars on the bar chart.
+                   * @param {data} d
+                   * @returns {number} makes the 'height' value of each bar correct
+                   */
+                  function (d) {
+                      return height - yScale(d.timeTaken);
+                  })
+              .on('mouseover',
+                  /**
+                   * displays footer when your mouse is over a file with the image its referred to and its name.
+                   * @param {Object} d data from json file
+                   * @yields {HTMLStyleElement} makes footer visible
+                   * @yields {Image} creates a new html image inside the footer
+                   */
+                  function (d) {
+                      footer.style.display = 'block';
+                      footer.innerHTML = '"' + d.imageName + '" <img src= "' + d.imagePath + '" style="width:40%;"></img>';
+                  })
+              .on('mouseout',
+                  /**
+                   * Hides footer when your mouse is away.
+                   * @param {Object} d data from dataset
+                   * @yields {CSSstyleDeclaration} hides footer
+                   */
+                  function (d) {
+                      footer.style.display = 'none';
+                  });
+      });
+}
+// ---------------------------------CREATE PIE CHART------------------------------------------
+/**
+* This creates my piechart
+* MODIFIED FROM https://d3-graph-gallery.com/graph/pie_annotation.html
+* @author Yan Holtz
+* @yields {svg} returns multiple svg that come together to create a bar chart
+* @yields {HTMLElement} - creates a footer at the bottom of the page (div) that tells you what section you are viewing on mouse over.
+*/
+function PieChart () {
+  d3.json('data.json', function (error, d) {
+      if (error) {
+          throw error;
+      }
+
+      // set the dimensions and margins of the graph
+      var width = window.innerWidth / 2;
+      height = width;
+      margin = 20;
+
+      /**
+       * @const {number} radius the radius is half the width and is subtracted from the margin
+       */
+      const radius = Math.min(width, height) / 2 - margin;
+      d3.select('#piechart').selectAll('svg').remove();
+
+      /**
+       * @const {Object} svg2 appends an svg to the div with the class 'piechart'
+       */
+      const svg2 = d3.select('#piechart')
+          .append('svg')
+          .attr('width', width)
+          .attr('height', height)
+          .append('g')
+          .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')'); ;
+      /**
+       * @const {Array<string>} data this gets all the mediums to create the pie chart
+       */
+      const data = d.Artworks.mediumStats.All;
+      /**
+       * @enum {Array.<string>} sets all the possible colours in the pie chart
+       */
+      const color = d3.scaleOrdinal()
+          .domain(data)
+          .range(['#98abc5', '#8a89a6', '#7b6888', '#6b486b', '#a05d56', '#C8BCD6']);
+
+      /**
+       * @const {number} pie computes position of groups on the pie
+       */
+      const pie = d3.pie()
+          .value(function (d) {
+              return d.value;
+          });
+
+      const dataReady = pie(d3.entries(data));
+
+      /**
+       * @const arcGenerator helper to build arcs
+       */
+      const arcGenerator = d3.arc()
+          .innerRadius(0)
+          .outerRadius(radius);
+
+      /**
+       * @name buildPieChart
+       * @description builds the piie chart making each part a path and using the arc function.
+       * part of {@link PieChart}
+       */
+      svg2
+          .selectAll('whatever')
+          .data(dataReady)
+          .enter()
+          .append('path')
+          .attr('d', d3.arc()
+              .innerRadius(0)
+              .outerRadius(radius)
+          )
+          .attr('fill', function (d) {
+              return (color(d.data.key));
+          })
+          .style('opacity', 0.9)
+          .on('mouseover', function (d) {
+              footer.style.display = 'block';
+            //   If there is only one value then we dont want it saying 'artworkS'
+              if (d.data.value > 1) {
+                footer.textContent = d.data.key +': ' + d.data.value + ' artworks';
+              } else {
+                footer.textContent = d.data.key +': ' + d.data.value + ' artwork';
+              };
+              footer.style.backgroundColor = color(d.data.key);
+          })
+          .on('mouseout', function (d) {
+              footer.style.display = 'none';
+          });
+      // Now add the annotation. Use the centroid method to get the best coordinates
+      svg2
+          .selectAll('mySlices')
+          .data(dataReady)
+          .enter()
+          .append('text')
+          .attr('transform', function (d) {
+              return 'translate(' + arcGenerator.centroid(d) + ')';
+          })
+          .style('text-anchor', 'middle')
+          .style('font-size', 17);
+  });
+};
+// ----------------------------------COMPACT GALLERY-------------------------------------------
+/**
+* @const {HTMLElement} combined this is the section of the gallery called "Reflecting on Lockdown"
+* we get it so we can hide and show it on certain button inputs
+*/
+const combined = document.getElementById('Combined');
+/**
+* @const {HTMLElement} lockdown this is the section (div) of the gallery called "Lockdown Imagery"
+* we get it so we can hide and show it on certain button inputs
+*/
+const lockdown = document.getElementById('Lockdown');
+/**
+* @const {HTMLElement} reflection this is the section (div) of the gallery called "Reflection Imagery"
+* we get it so we can hide and show it on certain button inputs.
+*/
+const reflection = document.getElementById('Reflection');
+/**
+* @description initialises these HTML Elements as hidden (see {@link hideSection} for how this is implemented)
+*/
+reflection.style.display = 'none';
+lockdown.style.display = 'none';
+combined.style.display = 'none';
+/**
+* this checks if the svg for the bar chart is there or not.
+* @type {boolean}
+*/
+let svgthere = false;
+/**
+* Hides the correct section of my Gallery and SVG
+* @param {number} buttonNumber - when a button is pushed it's button number is passed on to if statements that then make you able to see
+* the desired section. (e.g. if you press the button "reflection imagery", that is button 2
+* and you will now see the correct sections and bar chart).
+* @returns {HTMLStyleElement} - makes the style 'block' for the selected HTML
+* div making it viewable when the correct button is pressed.
+* @returns {Function} -constructs a new bar chart with the
+* relevant data. see {@link barChart}
+* @example if buttonNumber == 2 , reflection.style.display = 'block'.
+*/
+function hideSection (buttonNumber) {
+  // This makes an SVG container if there is not already one
+  if (svgthere === false) {
+      svgthere = true;
+      const div = document.getElementById('svgcontainer1');
+      div.insertAdjacentHTML('afterbegin', '<div class="description" id="side">How long each drawing took (hours). (hover over bar to see image)</div>');
+      d3.select('.svgcontainer').append('svg').attr('width', window.innerWidth - 10).attr('height', 500).attr('id', 'svgBar');
+  }
+  if (buttonNumber === 2) {
+      reflection.style.display = 'block';
+      lockdown.style.display = 'none';
+      combined.style.display = 'none';
+      barChart(2);
+  } else if (buttonNumber === 3) {
+      reflection.style.display = 'none';
+      lockdown.style.display = 'block';
+      combined.style.display = 'none';
+      barChart(3);
+  } else {
+      reflection.style.display = 'none';
+      lockdown.style.display = 'none';
+      combined.style.display = 'block';
+      barChart(4);
+  }
+}
+// ---------------------------------SHOW/HIDE FOOTER DATA-------------------------------------------
+/**
+* This extracts the id of an image as you hover over it and displays the relevant information about it in a div that appears at the bottom of the screen
+* @param {string} id it takes the id of the button pressed and turns it into a string. the first letter of the number is the location of the needed file
+* and the second letter is a number and it is the index of the wanted image in the data. (e.g. "l1" shows you it is in the lockdown folder and is talking about the image with index 1).
+* @param {JSON} 'data.json' takes my json file and parses its data.
+* @returns {HTMLElement} shows a HTML footer (div) that contains information about the image you hover over.
+*/
+function footerData (id) {
+  d3.json('data.json',
+      /**
+       * {@link ParseData}
+       */
+      function (error, d) {
+          if (error) {
+              throw error;
+          }
+          /**
+           * This takes the second half of the id of the image that is being hovered over which is
+           * actually the index of where the data for this image is in my data.
+           * @const {number}
+           */
+          const index = id.slice(1);
+          /**
+           *the first letter of the index indicates what the path for the image is in the data.
+           *@type {string}
+           */
+          let path = id.charAt(0);
+          if (path === 'r') {
+              /**
+               * this then turns path into an object where we will be able to get the values of the image being hovered over
+               * @type {object}
+               */
+              path = d.Artworks.ReflectionArtworks;
+          } else if (path === 'l') {
+              path = d.Artworks.LockdownArtworks;
+          } else {
+              path = d.Artworks.ReflectingOnLockdownArt;
+          }
+          const title = path[index].imageName;
+          const info = path[index].medium;
+          footer.style.display = 'block';
+          const dialogue = 'Image name: "' + title + '", Medium: ' + info;
+          // alert(dialogue)
+          footer.textContent = dialogue;
+      }
+  );
+};
+/**
+* this hides the footerData's div when you are not hovering over an image
+* @param {MouseEvent} -image when an image is not being hovered over the data from {@link footerData} hides.
+* @return {CSSStyleDeclaration} makes the display of the footer none
+*/
+function hideData () {
+  footer.style.display = 'none';
+}
+// ---------------------------------CONTINUE BUTTON-------------------------------------------------
+/**
+* When you click the continue button on my website it shows the below sections allowing you to proceed
+* @param {MouseEvent} 'onclick' when continue button is pressed it allows you to see the next sections (divs)
+* @yields {HTMLStyleElement} required divs are now visible
+*/
+function showcontent () {
+  menu.style.display = 'block';
+  intro.style.display = 'block';
+}
+// -----------------------------------SVG RESIZE-----------------------------------------------------
+// This initialises the Piechart
+PieChart();
+window.addEventListener('resize',
+/**
+ * @name screenResizeSvgScaling
+ * @description creates a new pie chart and bar chart using their functions
+ * {@link PieChart} , {@link Barchart}
+ * @yields {svg} creates resized svgs based on the new screen size
+ * @yields {function} the barchart and pie chart function
+ */
+function () {
+  PieChart();
+  d3.selectAll('#svgBar').remove();
+  if (window.getComputedStyle(lockdown).display === 'block') {
+      d3.select('.svgcontainer').append('svg').attr('width', window.innerWidth - 10).attr('height', 500).attr('id', 'svgBar');
+      barChart(3);
+  } else if (window.getComputedStyle(reflection).display === 'block') {
+      d3.select('.svgcontainer').append('svg').attr('width', window.innerWidth - 10).attr('height', 500).attr('id', 'svgBar');
+      barChart(2);
+  } else if (window.getComputedStyle(combined).display === 'block') {
+      d3.select('.svgcontainer').append('svg').attr('width', window.innerWidth - 10).attr('height', 500).attr('id', 'svgBar');
+      barChart(4);
+  };
+});
+// ----------------------------------EMAIL -------------------------------------------------
+/**
+* creates a new email
+* @yields {CommissionEmail} creates a new email class
+* @yields {alert} alerts you that you have/havent filled out email
+* @example Fill in name "Sorcha",  email "---@durham.ac.uk", subject "---", message "bla bla bla" it will store that and log
+* it in the console.
+* @example If you do not fill in one of the fields (not including the optional one) it will tell you you havent filled in one of the sections.
+*/
+function createEmail () {
+  var email = new CommissionEmail();
+  if (email.name !== '' && email.email !== '' && email.subject !== '' && email.message !== '') {
+      console.log(email);
+      alert('thank you for your feedback, ' + email.name + '. \n Your message reads "' + email.message + '".');
+  } else {
+      alert('You havent filled in one of the sections');
+  };
+}

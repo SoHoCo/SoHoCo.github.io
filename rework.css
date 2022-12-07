@@ -1,0 +1,412 @@
+
+/* I decided to use a more formal font and so set the body to the fonts below */
+body {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+/* Contact me button that sticks to the top of my screen */
+.top {
+  position: absolute;
+  top: 0%;
+  z-index: 20;
+  float: left;
+  align-items: center;
+  background-color: #ffffff80;
+  border-bottom-right-radius: 8px;
+  box-sizing: border-box;
+  color: #111;
+  cursor: pointer;
+  display: flex;
+  font-family: Inter,sans-serif;
+  font-size: 16px;
+  justify-content: center;
+  max-width: auto;
+  padding: 0 25px;
+  text-align: center;
+  touch-action: manipulation;
+}
+
+/* Footer that shows data and sticks to bottom of screen */
+#footer {
+  position: absolute;
+  bottom: 2%;
+  width: 50%;
+  z-index: 20;
+  align-items: center;
+  background-color: #fee6e3;
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #111;
+  cursor: pointer;
+  display: flex;
+  font-family: Inter,sans-serif;
+  font-size: 16px;
+  justify-content: center;
+  line-height: 24px;
+  max-width: 100%;
+  padding: 0 25px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  opacity: 0.8;
+}
+
+/* More details for the contact button */
+#ContactButton {
+  bottom: 2%;
+  z-index: 20;
+  border: none;
+  color: #000000;
+  align-items: center;
+}
+
+
+html, body{
+  /* This means when you click on the navigation buttons it scrolls slowly towards the specified section */
+ scroll-behavior: smooth;
+ /*Stops overflow on phones */
+ width: 100%;
+ height: 100%;
+ overflow-x: hidden;
+}
+
+/* This is where I create the background Parallax effect */
+/* It is done by moving the background at a different speed to the rest of the webpage */
+/* CODE FOR PARALLAX EFFECT ADAPTED FROM:
+  ('W3 schools', 2022, 'How TO - Parallax Scrolling', Refsnes Data, [HTML & CSS code], viewed Mon 17th October 2022, (https://www.w3schools.com/howto/howto_css_parallax.asp)) */
+.Parallax {
+    background-image: url(Images/FinalPiece2.png);
+    height: 120%;
+    background-attachment: fixed;
+      /* This keeps the image in the center */
+    background-position: center;
+      /* This means the background does not repeat and ends at the bottom of the image */
+    background-repeat: no-repeat;
+      /* This makes it cover the page */
+    background-size: cover;
+}
+
+/* Second parallax with seperate image */
+/* It is the same size so that it merges with the above effect */
+.Parallax2 {
+    background-image: url(Images/FINAL\ PIECE\ 1\ \(2\).png);
+    min-height: 120%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* This is the continue button that will be at the bottom of the parallax 2 div */
+.bottom {
+  position: relative;
+  bottom: 0px;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  color: #000000;
+}
+
+/* This is the section that appears beneath the continue button and slowly pulls down */
+.Parallax3 {
+  background-image: url(Images/full\ folio\ 2.jpg);
+  height: 200%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  animation:pulldown 10s ease 0s 1 normal forwards;
+  border: #111;
+}
+
+/* this is the animation that allows parallax3 to slowly pull down */
+@keyframes pulldown {
+	0% {
+		background-position: 50% 0%;
+	}
+
+	100% {
+		background-position: 50% 100%;
+	}
+}
+
+/* For all the large titles */
+.Title {
+    width: 100%;
+    font-size: 500%;
+    text-align: center;
+    color:rgb(255, 234, 142);
+
+}
+
+/* This is for text slightly smaller than the title - e.g. a subtitle */
+.Intention {
+    width: 100%;
+    font-size: 200%;
+    text-align: center;
+    color:rgb(255, 243, 191);
+}
+
+/* This is the scolling buttons */
+.scroll{
+  color:rgb(247, 223, 89);
+  transition: font-size 0.2s;
+}
+
+/* To make it more intuitive to click, the text gets larger over the navigation buttons when you hover over it */
+.scroll:hover {
+  color: goldenrod;
+  font-size: 105%;
+}
+
+/* This is just the intro to the gallery. */
+.GalleryIntro {
+  /* The height acts as a divider and creates some space between the introduction and the first section of the gallery */
+  height: 100px;
+}
+
+/* For each section I wanted the title of the section to stick to the top of the page */
+.PortfolioIntro {
+    
+    /* It sticks when it hits 0px from the top */
+    top:0px;
+    /* I gave a slightly dark background so you can easily see the text and create a divide between the two images */
+    background-color: black;
+    opacity: 60%;
+}
+
+/* The Title of each of the sections in my gallery */
+.SectionIntro {
+    width: 100%;
+    font-size: 200%;
+    text-align: center;
+    color:black;
+    position: sticky;
+    top:0px;
+    background-color: white;
+    z-index: 10;
+}
+
+/* The description below each title for my gallery */
+.description {
+  text-align: center;
+  font-size: 100%;
+}
+.DescriptionIntro {
+  text-align: center;
+  font-size: 80%;
+  color: rgba(0, 0, 0, 0.534);
+}
+
+/* CODE ADAPTED FROM:
+  ('W3 schools', 2022, 'How TO - Responsive Image Grid', Refsnes Data, [HTML & CSS code], viewed Tue 25th October 2022, (https://www.w3schools.com/howto/howto_css_image_grid_responsive.asp))*/
+.row {
+    display: flex;      
+    flex-wrap: wrap;    /* this stops overflow  of columns*/
+    padding: 5%; 
+  }
+  
+
+  .column {
+    /* Dividing the page into 3 coloumns gives you 100/3 which is 33.33% */
+    flex: 33.33%;
+    max-width: 33.33%;
+    /* The padding gives space between the pages */
+    padding: 1%;
+  }
+
+  
+  .column img {
+    margin-top: 1%;
+    vertical-align: middle;
+    width: 100%;
+    transition: width 0.1s;
+  }
+
+  /* When you put your mouse over one of the images it increases in size */
+  /* This makes it more intuitive for you to know to click onto it */
+  .column img:hover {
+    width: 105%;
+    cursor: pointer;
+  }
+  
+  /* This makes it so when the device width changes to about that of a phone or you just make the tab smaller */
+  /* then the columns change so there is only one column */
+  @media screen and (max-width: 700px) {
+    .column {
+      flex: 100%;
+      max-width: 100%;
+    }   
+  }
+
+  /* Section that sticks to the left of the screen */
+.left {
+  align-items: center;
+  background-color: #ffffff;
+  opacity: 0.7;
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #111;
+  display: flex;
+  font-family: Inter,sans-serif;
+  font-size: 30px;
+  height: auto;
+  justify-content: center;
+  line-height: 24px;
+  max-width: 70%;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+}
+
+/* Section that sticks to the right of the screen */
+.right {
+  margin-top: 20%;
+  margin-bottom: 2%;
+  padding: 50px;
+  float: right;
+  align-items: center;
+  background-color: #ffffff;
+  opacity: 0.7;
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #111;
+  display: flex;
+  font-family: Inter,sans-serif;
+  font-size: 2em;
+  width: 70%;
+  height: auto;
+  justify-content: center;
+  line-height: 24px;
+  max-width: 70%;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+}
+#svgcontainer1{
+  border:2px solid #111;
+  width: auto;
+  border-radius: 8px;
+}
+
+
+.bar:hover {
+  fill:#000000a4;
+}
+
+#side {
+  float: left;
+}
+
+/* This allows it so when you select the section of the gallery you want ot see it comes in nicely */
+/* Linking the enterance to the section of the gallery */
+.GalleryContainer {
+  animation: Enterance 1s ease 0s 1 normal forwards;
+}
+
+/* This is the actual animation if you think of it kind of like a function */
+@keyframes Enterance {
+	0% {
+		opacity: 0;
+		transform: translateY(250px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Button style Modified from ('getcssscan', 2022, 'Beautiful CSS buttons examples', [CSS code], viewed Thur 1st December 2022, (https://getcssscan.com/css-buttons-examples)*/
+button {
+  align-items: center;
+  background-color: #ffffff;
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #111;
+  cursor: pointer;
+  display: flex;
+  font-family: Inter,sans-serif;
+  font-size: 16px;
+  height: auto;
+  justify-content: center;
+  line-height: 24px;
+  max-width: 100%;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.buttons {
+  padding: 2%;
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  align-items: center;
+  background-color: #ffdeda;
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #111;
+  cursor: pointer;
+  display: flex;
+  font-family: Inter,sans-serif;
+  font-size: 16px;
+  height: auto;
+  justify-content: center;
+  line-height: 24px;
+  max-width: 100%;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 20%;
+  float: right;
+}
+
+button:after {
+  background-color: #111;
+  border-radius: 8px;
+  content: "";
+  display: block;
+  height: 48px;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  top: -2px;
+  transform: translate(8px, 8px);
+  transition: transform .2s ease-out;
+  z-index: -1;
+}
+
+button:hover:after {
+  transform: translate(0, 0);
+}
+
+button:active {
+  background-color: #ffdeda;
+  outline: 0;
+}
+
+button:hover {
+  outline: 0;
+}
+
+@media (min-width: 768px) {
+  button {
+    padding: 0 40px;
+  }
+}

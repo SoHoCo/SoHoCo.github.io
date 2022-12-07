@@ -1,0 +1,241 @@
+{
+   "Artworks":{
+      "LockdownArtworks":[
+         {
+            "imageName":"Falling Off",
+            "imagePath":"Images\\Lockdown\\20220207_102703 (2).jpg",
+            "medium":[
+               "watercolour",
+               "collage"
+            ],
+            "canvasSize":"A4",
+            "personalRanking":20,
+            "timeTaken":3
+         },
+         {
+            "imageName":"Holding Mask",
+            "imagePath":"Images\\Lockdown\\HoldingMask.jpg",
+            "medium":[
+               "oil pastel"
+            ],
+            "canvasSize":"A4",
+            "personalRanking":6,
+            "timeTaken":2
+         },
+         {
+            "imageName":"Holding Sanitiser",
+            "imagePath":"Images\\Lockdown\\HoldingSanitiser.jpg",
+            "medium":[
+               "watercolour",
+               "pencil"
+            ],
+            "canvasSize":"A4",
+            "personalRanking":7,
+            "timeTaken":2
+         }
+      ],
+      "ReflectionArtworks":[
+         {
+            "imageName":"Broken Mirror",
+            "imagePath":"Images\\Reflection\\BrokenMirror.jpg",
+            "medium":[
+               "pen"
+            ],
+            "canvasSize":"A4",
+            "personalRanking":14,
+            "timeTaken":4
+         },
+         {
+            "imageName":"Touching",
+            "imagePath":"Images\\Reflection\\HandReflection.jpg",
+            "medium":[
+               "pen"
+            ],
+            "canvasSize":"A4",
+            "personalRanking":7,
+            "timeTaken":5
+         },
+         {
+            "imageName":"Illusion",
+            "imagePath":"Images\\Reflection\\Illusion.png",
+            "medium":[
+               "digital art"
+            ],
+            "canvasSize":"N/A",
+            "personalRanking":3,
+            "timeTaken":6
+         },
+         {
+            "imageName":"Looking Back at Me",
+            "imagePath":"Images\\Reflection\\PencilMirror.jpg",
+            "medium":[
+               "pencil"
+            ],
+            "canvasSize":"A4",
+            "personalRanking":4,
+            "timeTaken":7
+         },
+         {
+            "imageName":"Singing to Myself",
+            "imagePath":"Images\\Reflection\\WashingHands.jpg",
+            "medium":[
+               "watercolour"
+            ],
+            "canvasSize":"A3",
+            "personalRanking":15,
+            "timeTaken":8
+         },
+         {
+            "imageName":"Who Is That?",
+            "imagePath":"Images\\Reflection\\Yeo.jpg",
+            "medium":[
+               "watercolour",
+               "pencil"
+            ],
+            "canvasSize":"N/A",
+            "personalRanking":5,
+            "timeTaken":9
+         }
+      ],
+      "ReflectingOnLockdownArt":[
+         {
+            "imageName":"Me",
+            "imagePath":"Images\\BothCombined\\ColouredPencil.jpg",
+            "medium":[
+               "pencil"
+            ],
+            "canvasSize":"A4",
+            "personalRanking":16,
+            "timeTaken":4
+         },
+         {
+            "imageName":"Glitch",
+            "imagePath":"Images\\BothCombined\\Glitch.jpg",
+            "medium":[
+               "oil pastel"
+            ],
+            "canvasSize":"A4",
+            "personalRanking":19,
+            "timeTaken":4
+         },
+         {
+            "imageName":"Look Down",
+            "imagePath":"Images\\BothCombined\\LookingDown.jpg",
+            "medium":[
+               "digital art",
+               "collage"
+            ],
+            "canvasSize":"A3",
+            "personalRanking":9,
+            "timeTaken":1
+         },
+         {
+            "imageName":"Warm",
+            "imagePath":"Images\\BothCombined\\Multiple.jpg",
+            "medium":[
+               "digital art",
+               "collage"
+            ],
+            "canvasSize":"A4",
+            "personalRanking":13,
+            "timeTaken":6
+         },
+         {
+            "imageName":"Pick up",
+            "imagePath":"Images\\BothCombined\\PickingUpMask.jpg",
+            "medium":[
+               "watercolour"
+            ],
+            "canvasSize":"A4",
+            "personalRanking":18,
+            "timeTaken":3
+         },
+         {
+            "imageName":"Reflect",
+            "imagePath":"Images\\BothCombined\\reflection.png",
+            "medium":[
+               "digital art"
+            ],
+            "canvasSize":"N/A",
+            "personalRanking":5,
+            "timeTaken":8
+         },
+         {
+            "imageName":"Repeat",
+            "imagePath":"Images\\BothCombined\\Repeat.jpg",
+            "medium":[
+               "watercolour"
+            ],
+            "canvasSize":"A4",
+            "personalRanking":17,
+            "timeTaken":3
+         },
+         {
+            "imageName":"Interaction",
+            "imagePath":"Images\\BothCombined\\Tanya Shatseva 1.png",
+            "medium":[
+               "digital art"
+            ],
+            "canvasSize":"N/A",
+            "personalRanking":8,
+            "timeTaken":8
+         },
+         {
+            "imageName":"FP2",
+            "imagePath":"Images\\FinalPiece2.png",
+            "medium":[
+               "digital art",
+               "collage"
+            ],
+            "canvasSize":"A1",
+            "personalRanking":1,
+            "timeTaken":10
+         },
+         {
+            "imageName":"FP1",
+            "imagePath":"Images\\FINAL PIECE 1 (2).png",
+            "medium":[
+               "digital art",
+               "collage"
+            ],
+            "canvasSize":"A1",
+            "personalRanking":2,
+            "timeTaken":10
+         }
+      ],
+      "mediumStats":{
+         "All":{
+            "watercolour":6,
+            "collage":5,
+            "digitalArt":7,
+            "pencil":4,
+            "pen":2,
+            "oilpastel":1
+         },
+         "ReflectionArtworks":{
+            "watercolour":6,
+            "collage":5,
+            "digitalArt":7,
+            "pencil":4,
+            "pen":2,
+            "oilpastel":1
+         },
+         "LockdownArtworks":{
+            "watercolour":6,
+            "collage":5,
+            "digitalArt":7,
+            "pencil":4,
+            "pen":2,
+            "oilpastel":1
+         },
+         "ReflectingOnLockdownArt":{
+            "watercolour":6,
+            "collage":5,
+            "digitalArt":7,
+            "pencil":4,
+            "pen":2,
+            "oilpastel":1
+         }
+      }
+   }
+}

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Encodes the document -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Makes visable are of the webpage able to vary with device -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- STYLESHEET FROM ('Bootstrap v5.2.2', 2022, 'Bootstrap CSS Stylesheet', Open Source,  MIT License, [CSS Code], viewed Wed 19 October 2022, (https://getbootstrap.com/)) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- This links to my css file to decorate my webpage -->
+    <link rel="stylesheet" href="rework.css" >
+    <!-- This is the title of my webpage that appears in the tab bar -->
+    <title>Formative Assignment</title>
+
+</head>
+<body>
+    <div class="top">
+        <!-- This links to the off canvas email section. This button sticks to the top of my screen -->
+        <a id="ContactButton" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+            Contact Me
+        </a>
+    </div> 
+    <div id="footer">hello</div>
+    <!--This creates a section where the first parallax image will go, and the contents that go over it-->
+    <div class="Parallax">
+        <!-- This div keeps all of my introductory stuff together -->
+           
+        <div class="Intro">
+        
+            <!-- This is a simple title that introduces my page -->
+            <div class="Title" id="TitleParallax">Sorcha's Art Page</div> 
+            <!-- This lays out the intention of my page -->
+            <div class="Intention">The aim of this page is to show my Advanced Higher Art Portfolio.</div>
+            
+            </div>
+        </div>
+    </div>
+
+    <!-- To create the illussion that the drawing is changing colour, I used another parallax effect directly below the first-->
+    <!-- This means when you scroll down the images are displaced by the same amount so line up the same creating the illusion -->
+    <div class="Parallax2"> 
+
+        <div class="PortfolioIntro">
+            <div class="Intention">The theme of my portfolio was</div>
+            <div class="Title">REFLECTING ON LOCKDOWN</div>
+        </div>
+        
+        
+      
+    </div>
+    <!-- Continue button to make website more engaging -->
+    <button class="bottom" onclick=showcontent()>
+            Continue...
+        </button>
+    <!-- Section revealed after pressing the button -->
+    <div class="Parallax3" id="Parallax3">
+        <!-- Text to the left -->
+        <div class="left">
+            For Advanced Higher Art, you are required to fill 8 A1 sheets of paper with artworks for your portfolio.
+        </div>
+
+        <!-- Text to the right -->
+        <div class="right">
+            If you would like to see the variety of mediums I used overall creating these artworks, hover over this pie chart!
+        </div>
+        
+        <div id="piechart"></div>
+    </div>
+    
+    <div class="menu" id="menu">  
+        <!-- This is the beginning of the section that will have all of my images -->
+        <div class="GalleryIntro" id="Gallery">
+
+            <!-- The description incorporates a. This is an <a> which is an anchor tag that defines a hyperlink -->
+            <!-- It links you to the section it talks about by having a href to the id of the div it references -->
+            <div class="description">
+                My theme was broken down into 2 sections, 'Reflection Imagery' and 'Lockdown Imagery' before coming together and Combining</a>.
+            </div>
+        </div>
+   
+    
+    
+        <div class="description">Which section would you like to know about?</div>
+        <!-- BOOTSTRAPGRID LAYOUT FROM 
+            ('Bootstrap', 2022, 'Bootstrap Grid system', Open Source, Bootstrap (v.5.2), MIT License, [HTML & CSS Code], viewed Wed 30 November 2022, (https://getbootstrap.com/docs/5.2/layout/grid/) -->
+        
+            <div class="container text-center">
+                <div class="row">
+                <div class="col">
+
+                    <button onclick="hideSection(2)" onclick="var buttonNumber = 2">Reflection Imagery</button>
+
+                </div>
+                <div class="col">
+
+                        <button onclick="hideSection(3)">Lockdown Imagery</button>
+                
+                </div>
+                <div class="col">
+                
+                        <button onclick="hideSection(4)">Reflecting on Lockdown</button>
+        
+                </div>
+                </div>
+    </div>
+        <!-- This is where the data will go -->
+        <div class="svgcontainer" id="svgcontainer1">
+            <!-- This is where my svg whill go via javascript -->
+        </div>
+        
+        
+        
+    </div>
+    <!--This begins the first section of the gallery about reflections -->
+    <div class="GalleryContainer" id="Reflection">
+         
+        <div class="SectionIntro" >Reflection Imagery</div>
+        <div class="DescriptionIntro">This explored the medium of literal reflections of light and the concept of thinking back.</div>
+
+        <!-- I create a class of rows and columns to create a grid structure -->
+        <!-- For each grid there are 3 columns -->
+
+        
+
+        
+
+        <div class="row">
+            <div class="column">
+                <!-- When you hover over an image it goes makes a footer appear below with
+                data. When you take your mouse away it hides that footer. -->
+                <!-- See JSDoc html page for more info on how the functions work -->
+                <img src="Images/Reflection/BrokenMirror.jpg" id="r0" onmouseover=footerData(this.id) onmouseout=hideData()>
+
+                
+  
+                <img src="Images/Reflection/PencilMirror.jpg" id="r3" onmouseover=footerData(this.id) onmouseout=hideData()>
+            
+            </div>
+            
+            <div class="column">
+                
+                <img src="Images/Reflection/Illusion.png" id="r2" onmouseover=footerData(this.id) onmouseout=hideData()>
+        
+                 
+                <img src="Images/Reflection/HandReflection.jpg" id="r1" onmouseover=footerData(this.id) onmouseout=hideData()>
+
+            </div>
+
+            <div class="column">
+       
+                <img src="Images/Reflection/Yeo.jpg" id="r5" onmouseover=footerData(this.id) onmouseout=hideData()>
+           
+                <img src="Images/Reflection/WashingHands.jpg" id="r4" onmouseover=footerData(this.id) onmouseout=hideData()>
+            </div>
+
+        </div>
+        <!-- This makes it so you dont have to scroll all the way back to the top to select another gallery -->
+        <a class="button" href="#menu">back to top</a>
+    </div>
+
+    <!-- This is the new container of the second section of images -->
+    <!-- It uses the same format as the above section -->
+    <div class="GalleryContainer" id="Lockdown">
+        <div class="SectionIntro">Lockdown Imagery</div>
+        <div class="DescriptionIntro">This looked into the key images of lockdown like masks and hand sanitiser.</div>
+        <div class="svgcontainer">
+            <!-- This is where my svg whill go via javascript -->
+        </div>
+        <div class="row">
+            <div class="column">
+                
+                <img src="Images/Lockdown/20220207_102703 (2).jpg" id="l0" onmouseover=footerData(this.id) onmouseout=hideData()>
+                
+            </div>
+            <div class="column">
+                
+                <img src="Images/Lockdown/HoldingSanitiser.jpg" id="l2" onmouseover=footerData(this.id) onmouseout=hideData()>
+                
+            </div>
+            <div class="column">
+                
+                <img src="Images/Lockdown/HoldingMask.jpg" id="l1" onmouseover=footerData(this.id) onmouseout=hideData()>
+           
+            </div>
+        </div>
+        <a class="button" href="#menu">back to top</a>
+    </div>
+
+    <!-- The final section of the gallery -->
+    <div class="GalleryContainer" id="Combined">
+        <div class="SectionIntro">'Reflecting' and 'Lockdown'</div>
+        <div class="DescriptionIntro">This combined the two earlier themes to showcase my theme of Reflecting on Lockdown.</div>
+        <div class="svgcontainer">
+            <!-- This is where my svg whill go via javascript -->
+        </div>
+        <div class="row">
+            <div class="column">
+                
+                <img src="Images/BothCombined/BrokenMirror.jpg" id="r0" onmouseover=footerData(this.id) onmouseout=hideData()>
+               
+              
+                <img src="Images/BothCombined/ColouredPencil.jpg" id="c0" onmouseover=footerData(this.id) onmouseout=hideData()>
+             
+              
+                <img src="Images/BothCombined/Repeat.jpg" id="c6" onmouseover=footerData(this.id) onmouseout=hideData()>
+             
+            </div>
+            <div class="column">
+               
+                <img src="Images/BothCombined/LookingDown.jpg" id="c2" onmouseover=footerData(this.id) onmouseout=hideData()>
+             
+                    
+                <img src="Images/BothCombined/Multiple.jpg" id="c3" onmouseover=footerData(this.id) onmouseout=hideData() >
+             
+                
+                <img src="Images/BothCombined/PickingUpMask.jpg" id="c4" onmouseover=footerData(this.id) onmouseout=hideData()>
+              
+            </div>
+            <div class="column">
+                
+                <img src="Images/BothCombined/reflection.png" id="c5" onmouseover=footerData(this.id) onmouseout=hideData()>
+             
+               
+                <img src="Images/BothCombined/Glitch.jpg" id="c1" onmouseover=footerData(this.id) onmouseout=hideData()>
+       
+                
+                <img src="Images/BothCombined/Tanya Shatseva 1.png" id="c7" onmouseover=footerData(this.id) onmouseout=hideData()>
+             
+            </div>
+        </div>
+        <a class="button" href="#menu">back to top</a>
+        
+    </div>     
+    <!-- -------------------------------------------OFF CANVAS EMAIL SECTION --------------------------------------------------- -->
+        <!-- OFF SECTOIN CLASS FROM:
+            ('Bootstrap', 2022, 'Bootstrap Offcanvas', Open Source, Bootstrap (v.5.2), MIT License, [HTML & CSS Code], viewed Wed 19 November 2022, (https://getbootstrap.com/docs/5.2/components/offcanvas/) -->
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+                    
+            <!--CODE FOR CONTACT FORM ADAPTED FROM:
+                ('MDB GO', 2015, 'Bootstrap contact Form', Open Source, Bootstrap (v.4), MIT License, [HTML & CSS Code], viewed Wed 19 October 2022, (https://mdbootstrap.com/docs/b4/jquery/forms/contact/)) -->
+            <section class="mb-4">
+                
+                <!--Section heading-->
+                <div class="SectionIntro" id="Contact">Contact Me</div>
+                <!--Section description-->
+                <p class="text-center w-responsive mx-auto mb-5">Do you like my art? Want to request a commission? Fill in my form and I will be back with you shortly.</p>
+                    
+                <div class="row">
+                    
+                    <!--Grid column-->
+                    <div class="col-md-9 mb-md-0 mb-5">
+                        <form id="contact-form" name="contact-form">
+                    
+                            <!--Grid row-->
+                            <div class="row">
+                    
+                                <!--Grid column-->
+                                <div class="col-md-6">
+                                    <div class="md-form mb-0">
+                                        <input type="text" id="name" name="name" class="form-control">
+                                        <label for="name" class="">Your name</label>
+                                    </div>
+                                </div>
+                                <!--Grid column-->
+                    
+                                <!--Grid column-->
+                                <div class="col-md-6">
+                                    <div class="md-form mb-0">
+                                        <input type="text" id="email" name="email" class="form-control">
+                                        <label for="email" class="">Your email</label>
+                                    </div>
+                                </div>
+                                <!--Grid column-->
+                    
+                                </div>
+                            <!--Grid row-->
+                    
+                            <!--Grid row-->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="md-form mb-0">
+                                        <input type="text" id="subject" name="subject" class="form-control">
+                                        <label for="subject" class="">Subject</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Grid row-->
+                        
+                            <!--Grid row-->
+                            <div class="row">
+                    
+                                <!--Grid column-->
+                                <div class="col-md-12">
+                    
+                                    <div class="md-form">
+                                        <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
+                                        <label for="message">Your message</label>
+                                    </div>
+                    
+                                </div>
+                            </div>
+                            <!--Grid row-->
+
+                            <div class="row">
+                    
+                                <!--Grid column-->
+                                <div class="col-md-12">
+                                    <div class="md-form">
+                                        <select class="form-select" id="multipleChoice" aria-label="Default select example">
+                                            <option selected>What was your favourite section?</option>
+                                            <option value="Reflection">Reflection Artworks</option>
+                                            <option value="Lockdown">Lockdown Artworks</option>
+                                            <option value="Combined">Reflecting on Lockdown Artworks</option>
+                                        </select>
+                                        <label for="multipleChoice">(Optional)</label>
+                                    </div>
+                                </div>
+                            
+                    
+                        </form>
+                    
+                        <div class="text-center text-md-left">
+                            <!-- This makes it so that all the inputs are sent to Javascript (see JSdoc for more
+                                info on how the function works) -->
+                            <a class="btn btn-primary" onclick="createEmail()">Send</a>
+                        </div>
+                        <div class="status"></div>
+                    </div>
+                    <!--Grid column-->
+                    
+         <a type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></a>                   
+    </div>
+            
+        </div>
+    </div>
+
+    <div id="dataHolder">   
+        <div class="storeData" id="dl"></div>
+    </div>      
+    </section>
+    
+    <!--SCRIPT FOR BOOTSTRAP:
+        ('Bootstrap', 2022, 'D3js', Open Source, Bootstrap (v.5.2), MIT License, [Javascript Code], viewed Thur 10 November 2022, (https://getbootstrap.com/docs/5.2/getting-started/introduction/))-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <!-- SCRIPT FOR D3 V4:
+        ('D3', 2016, 'd3js', Open Source, D3 (v.4), ISC License, [Javascript Module], viewed Thur 10 November 2022, (https://github.com/d3/d3/releases/tag/v4.0.0))-->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <!-- Connect my script to the HTML file -->
+    <script src="script.js"></script>
+</body>
+</html>
